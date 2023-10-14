@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import "./styles.css";
 
-function App() {
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [charcount, setCharcount] = useState(0);
+ 
+  
+  let change = (e) => {
+    wordcount(e.target.value);
+  };
+
+  function wordcount(str) {
+    let c = 0;
+    let str1 = str.split(" ");
+    charCout(str);
+
+    for (let i = 0; i < str1.length; i++) {
+      if (str1.length === 0) {
+        setCount(0);
+      }
+      if (str1[i] !== "") {
+        c++;
+      }
+      setCount(c);
+    }
+  }
+
+  function charCout(str) {
+    let c = 0;
+    for (var i = 0; i < str.length; i++) {
+      if (str[i] !== " ") {
+        c++;
+      }
+    }
+    setCharcount(c);
+  }
+  
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main">
+      <div className="file">
+       
+        <br />
+        <textarea
+          onChange={change}
+          
+          
+        ></textarea>
+
+        <div id="word-counter">Total number of words written :{count}</div>
+        <br />
+        <div id="char-counter">Total number of char count :{charcount} </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
